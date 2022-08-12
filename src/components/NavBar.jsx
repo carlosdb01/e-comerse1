@@ -1,21 +1,32 @@
 import React, { useState } from 'react';
 import { Navbar, Container, Nav, Button, Offcanvas } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import ShoppinCart from './ShoppinCart';
+
 
 const NavBar = () => {
+
+  const navigate = useNavigate()
+  
+  const [show, setShow] = useState(false);
+  
+  const token  = localStorage.getItem("token")
+
+  
+  const handleClose = () => setShow(false);
+  const handleShow = () => {
+  if(token){
+    setShow(true);
+  } else {
+    navigate("/login")
+  }
+}
 
     const logout = () =>{
       localStorage.setItem("token", "")
       navigate("/login")
     }
-
-    const token  = localStorage.getItem("token")
-    const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-    return (
+return (
       <>
         <Navbar bg="light" expand="lg">
         <Container>
@@ -33,21 +44,13 @@ const NavBar = () => {
                     <Nav.Link href="/#/login">Login</Nav.Link>
                 )
               }
-                <Nav.Link as={Button} onClick={handleShow} placement='end' > <i className="fa-solid fa-cart-plus"></i> My car </Nav.Link>
             </Nav>
+                <Nav.Link as={Button} onClick={handleShow} > My car </Nav.Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
-      <Offcanvas show={show} onHide={handleClose} placement= 'end'>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc.
-        </Offcanvas.Body>
-      </Offcanvas>
+      <ShoppinCart show={show} handleClose={handleClose} />
     </>
 
 )

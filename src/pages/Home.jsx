@@ -75,9 +75,9 @@ const Home = () => {
                                             <Card.Body style={{borderTop: "2px solid Black", marginTop: "15px"}}>
                                                 <div >
                                                     Price
-                                                    <div style={{display: "plex", justifyContent: "space-between"}}>
+                                                    <div style={{display: "plex", justifyContent: "center"}}>
                                                         <small>$ {product.price}</small>
-                                                        <Button variant="outline-danger"><i class="fa-solid fa-cart-plus"></i></Button>
+                                                        <Button variant="outline-danger"> to buy </Button>
                                                     </div>
                                                 </div>
                                             </Card.Body>
