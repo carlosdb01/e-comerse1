@@ -3,16 +3,6 @@ import { Offcanvas } from 'react-bootstrap';
 
 const ShoppinCart = ({show, handleClose}) => {
 
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getPurchasesThun()) 
-      
-    }, [])
-    
-
-
-
     return (
         <Offcanvas show={show} onHide={handleClose} placement= 'end' >
         <Offcanvas.Header closeButton>
